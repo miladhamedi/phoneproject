@@ -1,0 +1,54 @@
+﻿
+@model Contact
+@{
+    ViewData["Title"] = "ویرایش مخاطب";
+}
+
+<!-- Material form subscription -->
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>ویرایش مخاطب</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body col-md-6">
+
+        <!-- Form -->
+        <form class="text-center" style="color: #757575;" action="Update" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input name="contactid" asp-for="ContactId" type="hidden" />
+
+            <!-- Name -->
+            <div class="md-form mt-3">
+                <input placeholder="نام" asp-for="Firstname" type="text" id="materialSubscriptionFormPasswords" class="form-control">
+                <label for="materialSubscriptionFormPasswords"></label>
+                <span asp-validation-for="Firstname" class="text-danger"></span>
+            </div>
+
+            <!-- E-mai -->
+            <div class="md-form">
+                <input placeholder="نام خانوادگی" asp-for="LastName" type="text" id="materialSubscriptionFormEmail" class="form-control">
+                <label for="materialSubscriptionFormEmail"></label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="md-form">
+                <input placeholder=" کد ملی" asp-for="NationalCode" type="number" id="materialSubscriptionFormEmail" class="form-control">
+                <label for="materialSubscriptionFormEmail"></label>
+                <span asp-validation-for="NationalCode" class="text-danger"></span>
+            </div>
+
+            <!-- Sign in button -->
+            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">ویرایش مخاطب</button>
+
+        </form>
+        <!-- Form -->
+
+    </div>
+
+</div>
+
+
+

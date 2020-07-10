@@ -1,0 +1,106 @@
+﻿
+@model List<Contact>
+
+@{
+    ViewData["Title"] = " لیست مخاطبین";
+}
+
+<form  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search ">
+    <div class="input-group  ">
+        <input  type="text" id="Searchinput" style="background-color:white" class="form-control bg-light border-0 small border-right-primary  " placeholder="جستجو..." aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button onclick="Searchcon()" class="btn btn-primary" type="button">
+                <i class="fas fa-search fa-sm"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<br />
+<br />
+
+<div id="ShowData"></div>
+
+<table id="show" class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">نام</th>
+            <th scope="col">نام خانوادگی</th>
+            <th scope="col">کدملی</th>
+            <th scope="col">شماره موبایل</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Firstname</td>
+                <td>@item.LastName</td>
+                <td>@item.NationalCode</td>
+                <td>
+
+
+                    @foreach (var item2 in item.PhoneContacts)
+
+                    {
+                        @if (item.PhoneContacts.Count() > 0)
+                        {
+                            <span class="badge"> @item2.PhoneNumber</span>
+
+
+                        }
+                    }
+                </td>
+
+
+
+                <td>
+
+                    <a onclick="return confirm( 'ایا مایل ب حذف کاربر هستید؟')" href="/ManagContact/Delete?contactid=@item.ContactId" class="btn btn-danger btn-sm"> حذف کاربر</a>
+                    <a href="/ManagContact/Update?contactid=@item.ContactId" class="btn btn-warning btn-sm">ویرایش کاربر</a>
+                    <a href="/ManagContact/ListPhoneContact?Contactid=@item.ContactId" class="btn btn-info btn-sm">ویرایش/حذف/افزودن/ شماره</a>
+
+                </td>
+
+            </tr>
+
+
+        }
+
+    </tbody>
+</table>
+
+
+@section Scripts {
+
+    <script>
+
+            function Searchcon() {
+
+            var searchinput = $('#Searchinput').val();
+
+               $.ajax({
+                url: '@Url.Action("SearchContent", "ManagContact")',
+                   data: {
+                       contact:searchinput
+                   },
+                type: "Post",
+                   success: function (result) {
+
+                       $("#ShowData ").html(result)
+                },
+                error: function (a, b) {
+                }
+            });
+        }
+
+    </script>
+
+}
+
+
+
+
+
+

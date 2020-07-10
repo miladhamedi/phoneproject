@@ -1,0 +1,55 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "ورود";
+}
+
+
+<div dir="rtl" class="row">
+    <div class="col-md-6">
+        <section>
+            <form dir="rtl" id="account" method="post">
+                <h4 class="text-right">ورود ب پنل</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label></label>
+                    <input placeholder="ایمیل را  وارد کنید" asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label></label>
+                    <input placeholder="پسورد را وارد کنید" asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        @*<label asp-for="Input.RememberMe">
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">ورود</button>
+                </div>
+                <div class="form-group">
+                    <p class="text-right">
+                        <a id="forgot-password" asp-page="./ForgotPassword">پسورد را فراموش کردم</a>
+                    </p>
+                    <p class="text-right">
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">ثبت نام</a>
+                    </p>
+                    <p class="text-right">
+                        <button type="submit" asp-page-handler="SendVerificationEmail" class="btn-link" style="padding:0px;margin:0px;border:0px">ریست پسورد</button>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,43 @@
+﻿
+@model PhoneContact
+@{
+    ViewData["Title"] = "شماره تلفن";
+}
+
+<!-- Material form subscription -->
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>ویرایش شماره</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body col-md-6">
+
+        <!-- Form -->
+        <form class="text-center" style="color: #757575;" action="UpdatePhone" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input name="phonecontactid" asp-for="PhoneContactId" type="hidden" />
+            <input asp-for="ContactId" type="hidden" />
+
+            <!-- Name -->
+            <div class="md-form mt-3">
+                <input placeholder="شماره موبایل" asp-for="PhoneNumber" type="text" id="materialSubscriptionFormPasswords" class="form-control">
+                <label for="materialSubscriptionFormPasswords"></label>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+
+            <!-- Sign in button -->
+            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect" type="submit">ویرایش شماره تلفن</button>
+
+        </form>
+        <!-- Form -->
+
+    </div>
+
+</div>
+
+
+
